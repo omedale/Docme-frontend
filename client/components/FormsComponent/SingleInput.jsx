@@ -9,7 +9,7 @@ const SingleInput = (props) => (
       value={props.content}
       onChange={props.controlFunc}
     />
-      <label>{props.title}</label>
+      <label>Title</label>
   </div>
 );
 

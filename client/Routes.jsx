@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, Redirect, Switch, browserHistory
+  Router, Route, Redirect, Switch, browserHistory
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Provider from 'react-redux';
 import PropTypes from 'prop-types';
-
-import NavigationBar from './components/NavigationBar';
+import ViewDocument from './components/ViewDocument';
 import Home from './components/Home';
 import Details from './components/Details';
 import ManageDocument from './components/ManageDocument';
@@ -23,9 +22,10 @@ const Routes = () => {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/details" component={Details} />
-        <Route path="/document" component={ManageDocument} />
-        <Route path="/document/:id" component={ManageDocument} />
+        <Route path="/document/edit/:id" component={ManageDocument} /> 
+        <Route path="/document/:id" component={ViewDocument} />
+        <Route path="/document" component={ManageDocument} />  
+           
         <Route path="/" component={Home} />
         <Route path="*" component={NotFound} />
       </Switch>

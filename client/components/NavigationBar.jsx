@@ -48,12 +48,11 @@ class NavigationBar extends React.Component {
         </ul>
         <nav>
           <div className="nav-wrapper mainbg">
-            <a href="#!" className="brand-logo fontcolor">Logo</a>
+            <a href="#!" className="brand-logo mylogo fontcolor">Docme</a>
             <ul className="right hide-on-med-and-down">
               <li>
                 <Link
                   to="/"> Home</Link></li>
-              <li><Link to="/document">Create Document</Link></li>
               <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Account<i className="material-icons right">arrow_drop_down</i></a></li>
 
             </ul>

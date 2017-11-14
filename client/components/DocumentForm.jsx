@@ -47,6 +47,7 @@ const DocumentForm = ({ documentData, selectedOption, onSave, handleEditorChange
           <TinyMceEditor
             defaultValue={documentData.docContent}
             id={'createDoc'}
+            mode = {documentData.mode}
             handleEditorChange={handleEditorChange}
           />
         </div>

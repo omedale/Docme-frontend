@@ -13,7 +13,7 @@ const Select = ({id, name, title, selectedOption, controlFunc, docAccess = []}) 
       })
     }
     </select>
-    <label>{title}</label>
+    
   </div>
 );
 

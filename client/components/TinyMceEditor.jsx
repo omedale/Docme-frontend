@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ApiCall from '../util/ApiCalls'
 
 /**
  * TinyMce react component class
@@ -13,7 +14,10 @@ class TinyMceEditor extends Component {
    */
   constructor() {
     super();
-    this.state = { editor: null };
+    this.state = { 
+      editor: null,
+      tinymceContent: ''
+    };
   }
 
   /**
@@ -25,6 +29,7 @@ class TinyMceEditor extends Component {
   componentDidMount() {
     tinymce.init({
       selector:`#${this.props.id}`,
+      height : "400",
       plugins: `autolink link image lists 
       print preview textcolor table emoticons codesample`,
       toolbar: `undo redo | bold italic | 
@@ -63,10 +68,13 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   render() {
+    if (this.props.mode) {
+      tinymce.activeEditor.setContent(`${this.props.defaultValue}`, {format: 'raw'});      
+    }
     return (
       <textarea
         id={this.props.id}
-        defaultValue={this.props.content}
+        defaultValue={this.props.defaultValue}
       />
     );
   }
