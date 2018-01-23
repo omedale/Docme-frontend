@@ -16,7 +16,8 @@ class TinyMceEditor extends Component {
     super();
     this.state = { 
       editor: null,
-      tinymceContent: ''
+      tinymceContent: '',
+      isSetContent: false
     };
   }
 
@@ -27,6 +28,7 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   componentDidMount() {
+    // console.log(this.props.mode);
     tinymce.init({
       selector:`#${this.props.id}`,
       height : "400",
@@ -51,6 +53,15 @@ class TinyMceEditor extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.mode && this.state.isSetContent === false) {
+      this.setState({
+        isSetContent: true
+      })
+      tinymce.activeEditor.setContent(`${nextProps.defaultValue}`, {format: 'raw'});      
+    }
+  }
+
   /**
    * Remove instance of tinymce on compnent unmount
    * @method ComponentWillUnmount
@@ -68,9 +79,7 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   render() {
-    if (this.props.mode) {
-      tinymce.activeEditor.setContent(`${this.props.defaultValue}`, {format: 'raw'});      
-    }
+    // console.log(this.props.mode);
     return (
       <textarea
         id={this.props.id}
