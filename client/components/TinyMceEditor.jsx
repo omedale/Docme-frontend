@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ApiCall from '../util/ApiCalls'
 
 /**
  * TinyMce react component class
@@ -13,7 +14,11 @@ class TinyMceEditor extends Component {
    */
   constructor() {
     super();
-    this.state = { editor: null };
+    this.state = { 
+      editor: null,
+      tinymceContent: '',
+      isSetContent: false
+    };
   }
 
   /**
@@ -23,8 +28,10 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   componentDidMount() {
+    // console.log(this.props.mode);
     tinymce.init({
       selector:`#${this.props.id}`,
+      height : "400",
       plugins: `autolink link image lists 
       print preview textcolor table emoticons codesample`,
       toolbar: `undo redo | bold italic | 
@@ -46,6 +53,15 @@ class TinyMceEditor extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.mode && this.state.isSetContent === false) {
+      this.setState({
+        isSetContent: true
+      })
+      tinymce.activeEditor.setContent(`${nextProps.defaultValue}`, {format: 'raw'});      
+    }
+  }
+
   /**
    * Remove instance of tinymce on compnent unmount
    * @method ComponentWillUnmount
@@ -63,10 +79,11 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   render() {
+    // console.log(this.props.mode);
     return (
       <textarea
         id={this.props.id}
-        defaultValue={this.props.content}
+        defaultValue={this.props.defaultValue}
       />
     );
   }

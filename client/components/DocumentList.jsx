@@ -1,21 +1,23 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
-const DocumentList = ({ documents }) => {
-  const List = documents.map(document =>
-    <div>
-      <div className="col s2 m3">
-        <div className="card horizontal">
+const DocumentList = ({ deleteDocument, documents }) => {
+  const newDocuments = documents.reverse();
+  const List = newDocuments.map(document =>
+    <div  key={document.id + document.title}>
+      <div className="col s1 m2">
+        <div className="card horizontal cardDoc">
           <div className="card-stacked">
-            <div className="card-content">
-              <p>{ document.content }</p>
+            <a onClick={() => deleteDocument(document.id)}  className="button remove">x</a>
+            <div className="card-content cardContentImage">
+              <img className="thumb-image" src="img/thum.png"></img>
             </div>
-            <div className="card-action">
+            <div className="card-action card-footer cardDocAction">
               <Link
                 key={document.id + document.title}
                 to={`/document/${document.id}`}
               >
-                <div key={document.id}>{document.title}</div>
+                <div className="docText" key={document.id}>{document.title.substr(0, 10)}</div>
               </Link>
             </div>
           </div>

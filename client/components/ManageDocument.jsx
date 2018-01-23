@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import TinyMCE from 'react-tinymce';
 import NavigationBar from './NavigationBar';
 import DocumentForm from './DocumentForm';
+import ApiCall from '../util/ApiCalls'
 import SingleInput from './FormsComponent/SingleInput';
 import TextArea from './FormsComponent/TextArea';
 import Select from './FormsComponent/Select';
@@ -17,7 +18,8 @@ class ManageDocument extends React.Component {
       docTitle: '',
       docContent: '',
       access: '',
-      editor: null
+      editor: null,
+      editMode: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
@@ -25,6 +27,7 @@ class ManageDocument extends React.Component {
   }
 
   handleEditorChange(content) {
+    console.log(content)
     this.setState({
       docContent: content
     });
@@ -37,76 +40,73 @@ class ManageDocument extends React.Component {
     });
   }
 
-  componentDidMount() {
-    const config = {
-      "selector": "#doc-text-area",
-      "plugins": "autolink link image lists print preview textcolor table emoticons codesample",
-      "toolbar": "undo redo | bold italic | fontsizeselect fontselect | alignleft aligncenter alignright | forecolor backcolor | table | numlist bullist | emoticons | codesample",
-      "table_toolbar": "tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol",
-      "fontsize_formats": "8pt 10pt 12pt 14pt 18pt 24pt 36pt"
+  componentWillMount() {
+    if (this.props.match.params.id) {
+      ApiCall.getDocument(this.props.match.params.id).then(document => {
+        this.setState({
+          docTitle: document.data.title,
+          docContent: document.data.content,
+          access: document.data.access,
+          editMode: true
+        })
+      })
     }
-    tinymce.init({
-      selector: "#doc-text-area",
-      plugins: `autolink link image lists 
-      print preview textcolor table emoticons codesample`,
-      toolbar: `undo redo | bold italic | 
-      fontsizeselect fontselect | 
-      alignleft aligncenter alignright | forecolor backcolor 
-      | table | numlist bullist | emoticons | codesample`,
-      table_toolbar: `tableprops tabledelete  
-      | tableinsertrowbefore 
-      tableinsertrowafter tabledeleterow | tableinsertcolbefore 
-      tableinsertcolafter tabledeletecol`,
-      fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-      setup: (editor) => {
-        this.setState({ editor });
-        editor.on('keyup change', () => {
-          const content = editor.getContent();
-          this.handleEditorChange(content);
-        });
-      }
-    });
   }
-
 
 
   onClickSave(event) {
+    console.log(this.state.docContent);
     event.preventDefault();
-    const doc = {
-      title: event.target.docTitle.value,
-      content: this.state.docContent,
-      access: event.target.access.value
+
+    if (this.state.editMode === true) {
+      const doc = {
+        id: this.props.match.params.id,
+        title: event.target.docTitle.value,
+        content: this.state.docContent,
+        access: event.target.access.value
+      }
+      this.props.actions.saveDocuments(doc)
+        .then(res => {
+          this.props.history.push('/');
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    } else {
+      const doc = {
+        title: event.target.docTitle.value,
+        content: this.state.docContent,
+        access: event.target.access.value
+      }
+      this.props.actions.saveDocuments(doc)
+        .then(res => {
+          this.props.history.push('/');
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
-    console.log(doc)
-    this.props.actions.saveDocuments(doc)
-      .then(res => {
-        this.props.history.push('/');
-      })
-      .catch(error => {
-        console.log('error');
-        console.log(error);
-      })
   }
 
   render() {
-
     const documentData = {
       docTitle: this.state.docTitle,
       docContent: this.state.docContent,
       access: this.state.access,
+      mode: this.state.editMode
     }
     return (
       <div>
-        <div className="container">
+        <div className="">
           <NavigationBar history={this.props.history} />
         </div>
-        <div className="container">
-          <div className="row">
+        <div className="docContainer">
+          <div className="card row">
             <DocumentForm
               selectedOption={this.state.access}
               documentData={documentData}
               onSave={this.onClickSave}
-              handleEditorChange = {this.handleEditorChange}
+              handleEditorChange={this.handleEditorChange}
               onChange={this.handleChange}
             />
           </div>

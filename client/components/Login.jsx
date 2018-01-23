@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {
-  BrowserRouter as Router, Route, Redirect, Switch
+   Route, Redirect, Switch
 } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ApiCall from './../util/ApiCalls';
@@ -69,7 +69,7 @@ class Login extends React.Component {
                 <Link to="/register"> I don't have an Account </Link>
               </div>
               <div className="col s6">
-                <button className="pull-right waves-effect waves-light btn">Login</button>
+                <button className="pull-right waves-effect waves-light btn loginBtn">Login</button>
               </div>
             </div>
           </form>

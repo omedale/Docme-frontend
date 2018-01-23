@@ -12,7 +12,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="">
           <NavigationBar history={this.props.history} />
         </div>
         <DocumentPage />

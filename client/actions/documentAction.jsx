@@ -32,10 +32,10 @@ export function AllDocuments() {
   };
 }
 
-export function saveDocuments(document) { 
+export function saveDocuments(document) {
   return function(dispatch) {
     return ApiCall.saveDocuments(document).then(savedDocument => {
-      document.id ? dispatch(updateDocumentSuccess(savedDocument)) : dispatch(createDocumentSuccess(savedDocument))
+      document.id ? dispatch(updateDocumentSuccess(document)) : dispatch(createDocumentSuccess(document))
     }).catch(error => {
       dispatch(sendErrorMessage(error))
       throw(error);
