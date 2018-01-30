@@ -7,7 +7,7 @@ const DocumentList = ({ deleteDocument, documents, currentUserId }) => {
   const List = newDocuments.map(document => {
     let deleteBtn = '';
     if(parseInt(document.user_id) === parseInt(currentUserId)) {
-      deleteBtn = <a onClick={() => deleteDocument(document.user_id)}  className="button remove">x</a>
+      deleteBtn = <a onClick={() => deleteDocument(document.id)}  className="button remove">x</a>
     }
     return (<div  key={document.id + document.title}>
       <div className="col s1 m2">
