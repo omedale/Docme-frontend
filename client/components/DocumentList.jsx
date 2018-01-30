@@ -1,14 +1,19 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
-const DocumentList = ({ deleteDocument, documents }) => {
+const DocumentList = ({ deleteDocument, documents, currentUserId }) => {
+ 
   const newDocuments = documents.reverse();
-  const List = newDocuments.map(document =>
-    <div  key={document.id + document.title}>
+  const List = newDocuments.map(document => {
+    let deleteBtn = '';
+    if(parseInt(document.user_id) === parseInt(currentUserId)) {
+      deleteBtn = <a onClick={() => deleteDocument(document.user_id)}  className="button remove">x</a>
+    }
+    return (<div  key={document.id + document.title}>
       <div className="col s1 m2">
         <div className="card horizontal cardDoc">
           <div className="card-stacked">
-            <a onClick={() => deleteDocument(document.id)}  className="button remove">x</a>
+           { deleteBtn}
             <div className="card-content cardContentImage">
               <img className="thumb-image" src="img/thum.png"></img>
             </div>
@@ -23,8 +28,8 @@ const DocumentList = ({ deleteDocument, documents }) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>)
+  });
   return (
     <div>
       {List}
