@@ -13,11 +13,21 @@ import *  as documentActions from '../actions/documentAction';
 class DocumentPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userId: ''
+    }
     this.deleteDocument = this.deleteDocument.bind(this);
   }
 
   componentWillMount() {
     this.props.actions.AllDocuments();
+    ApiCall.getUserInfo(localStorage.getItem('UserAccessToken')).then(res => {
+      if (res.data) {
+      this.setState({
+        userId: res.data.info.user_id
+      })
+      }
+    })
   }
 
   deleteDocument(param){
@@ -43,7 +53,7 @@ class DocumentPage extends React.Component {
           <div className=" bodycard">
             <div className="card-content">
               <div className="row">
-                <DocumentList deleteDocument={this.deleteDocument} documents={documents} />
+                <DocumentList deleteDocument={this.deleteDocument} currentUserId={this.state.userId} documents={documents} />
               </div>
             </div>
           </div>

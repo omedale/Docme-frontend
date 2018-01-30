@@ -37,13 +37,16 @@ class Register extends React.Component {
      phone: event.target.phone.value,
     };
    ApiCall.RegisterUser(data).then((res) => {
-      console.log(res);
-      if (res.data.message === 'Registration Successfull and Logged In') {
-        ApiCall.saveToken(res.data.user.token)
-        this.props.history.push('/home');
+      if (res.statusText === 'Created') {
+        ApiCall.saveToken(res.data.auth_token);
+        localStorage.setItem('current_user_id', res.data.id)      
+        this.props.history.push('/');
       } else {
         this.setState({errorStatus: false});
-      }
+      } 
+    })
+    .catch(error => {
+      alert(error.data.message) 
     });
   }
 

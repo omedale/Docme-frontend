@@ -37,10 +37,16 @@ class Login extends React.Component {
       if (res.data.message === 'Login Successful') {
         ApiCall.saveToken(res.data.auth_token);
         this.setState({isAuthenticated: true});
+        localStorage.setItem('current_user_id', res.data.id)
         this.props.history.push('/');
-        console.log("greate")
       } else {
+        alert(res.data.message)
         this.setState({errorStatus: false});
+      }
+    })
+    .catch(error => {
+      if (error.data) {
+        alert(error.data.message.user_authentication) 
       }
     });
   }
