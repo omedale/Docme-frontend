@@ -27,7 +27,6 @@ class ManageDocument extends React.Component {
   }
 
   handleEditorChange(content) {
-    console.log(content)
     this.setState({
       docContent: content
     });
@@ -55,7 +54,6 @@ class ManageDocument extends React.Component {
 
 
   onClickSave(event) {
-    console.log(this.state.docContent);
     event.preventDefault();
 
     if (this.state.editMode === true) {
@@ -70,7 +68,7 @@ class ManageDocument extends React.Component {
           this.props.history.push('/');
         })
         .catch(error => {
-          console.log(error);
+          alert(error.data.message)
         })
     } else {
       const doc = {
@@ -83,7 +81,7 @@ class ManageDocument extends React.Component {
           this.props.history.push('/');
         })
         .catch(error => {
-          console.log(error);
+          alert(error.data.message)
         })
     }
   }

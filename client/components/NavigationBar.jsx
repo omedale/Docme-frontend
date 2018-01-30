@@ -23,7 +23,6 @@ class NavigationBar extends React.Component {
       this.logOut()
     })
   }
-
     /**
    * Sign Out user
    * @method signOut

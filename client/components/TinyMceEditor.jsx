@@ -28,7 +28,6 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   componentDidMount() {
-    // console.log(this.props.mode);
     tinymce.init({
       selector:`#${this.props.id}`,
       height : "400",
@@ -79,7 +78,6 @@ class TinyMceEditor extends Component {
    * @memberOf TinyMceComponent
    */
   render() {
-    // console.log(this.props.mode);
     return (
       <textarea
         id={this.props.id}
