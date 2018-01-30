@@ -10,7 +10,8 @@
     "test": "mocha --reporter spec tools/testSetup.js \"test/**/*.test.js\"",
     "test:e2e": "nightwatch --env chrome",
     "test:watch": "npm run test -- --watch",
-    "e2e-setup": "selenium-standalone install"
+    "e2e-setup": "selenium-standalone install",
+    "postinstall": "webpack -p"
   },
   "author": "",
   "license": "ISC",
