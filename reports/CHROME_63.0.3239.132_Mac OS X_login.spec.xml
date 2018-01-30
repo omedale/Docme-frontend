@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="2">
+
+  <testsuite name="login.spec"
+    errors="1" failures="0" hostname="" id="" package="login.spec" skipped="1"
+    tests="2" time="4.311" timestamp="Tue, 23 Jan 2018 19:07:47 GMT">
+  
+    <testcase name="Does not show the task list if there are no tasks" classname="login.spec" time="4.311" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+      Error while running waitForElementVisible command: waitForElement expects second parameter to have a global default (waitForConditionTimeout) to be specified if not passed as the second parameter 
+    at Object.Does not show the task list if there are no tasks (/Users/andeladeveloper/Desktop/web/React/docca/tests/login.spec.js:5:8)
+    at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+    </system-err>
+  
+
+  
+    
+    <testcase
+      name="Does not show the footer if there are no tasks" classname="login.spec">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

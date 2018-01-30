@@ -1,0 +1,32 @@
+20:07:46.867 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
+20:07:46.868 INFO - Launching a standalone Selenium Server
+2018-01-23 20:07:46.909:INFO::main: Logging initialized @454ms to org.seleniumhq.jetty9.util.log.StdErrLog
+20:07:46.998 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+20:07:47.055 INFO - Driver provider class org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+ registration capabilities Capabilities {browserName: internet explorer, ensureCleanSession: true, platform: WINDOWS, version: } does not match the current platform MAC
+20:07:47.055 INFO - Driver provider class org.openqa.selenium.edge.EdgeDriver registration is skipped:
+ registration capabilities Capabilities {browserName: MicrosoftEdge, platform: WINDOWS, version: } does not match the current platform MAC
+20:07:47.126 INFO - Using the passthrough mode handler
+2018-01-23 20:07:47.170:INFO:osjs.Server:main: jetty-9.4.5.v20170502
+2018-01-23 20:07:47.202:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@ea1a8d5{/,null,STARTING} has uncovered http methods for path: /
+2018-01-23 20:07:47.211:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@ea1a8d5{/,null,AVAILABLE}
+2018-01-23 20:07:47.275:INFO:osjs.AbstractConnector:main: Started ServerConnector@42d8062c{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2018-01-23 20:07:47.276:INFO:osjs.Server:main: Started @821ms
+20:07:47.276 INFO - Selenium Server is up and running
+2018-01-23 20:07:47.509:INFO:osjshC.ROOT:qtp1763847188-10: org.openqa.selenium.remote.server.WebDriverServlet-6fc6f14e: Initialising WebDriverServlet
+20:07:47.573 INFO - Found handler: org.openqa.selenium.remote.server.commandhandler.BeginSession@1e9eec05
+20:07:47.581 INFO - /session: Executing POST on /session (handler: BeginSession)
+20:07:47.675 INFO - Capabilities are: Capabilities {acceptSslCerts: true, browserName: chrome, javascriptEnabled: true, marionette: true, name: Login Spec}
+20:07:47.680 INFO - Capabilities {acceptSslCerts: true, browserName: chrome, javascriptEnabled: true, marionette: true, name: Login Spec} matched class org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 2.32.498537 (cb2f855cbc7b82e20387eaf9a43f6b99b6105061) on port 15019
+Only local connections are allowed.
+20:07:49.287 INFO - Detected dialect: OSS
+20:07:49.952 INFO - Found handler: org.openqa.selenium.remote.server.ServicedSession@770bb347
+20:07:49.952 INFO - Handler thread for session 50fdabea2f817da44b50d03ad756c27b (chrome): Executing POST on /session/50fdabea2f817da44b50d03ad756c27b/url (handler: ServicedSession)
+20:07:49.957 INFO - To upstream: {"url":"http://localhost:8080/login"}
+20:07:51.532 INFO - To downstream: {"sessionId":"50fdabea2f817da44b50d03ad756c27b","status":0,"value":null}
+20:07:51.547 INFO - Found handler: org.openqa.selenium.remote.server.ServicedSession@770bb347
+20:07:51.547 INFO - Handler thread for session 50fdabea2f817da44b50d03ad756c27b (chrome): Executing DELETE on /session/50fdabea2f817da44b50d03ad756c27b (handler: ServicedSession)
+20:07:51.611 INFO - To downstream: {"sessionId":"50fdabea2f817da44b50d03ad756c27b","status":0,"value":null}
+20:07:51.626 INFO - Removing session org.openqa.selenium.remote.server.ServicedSession@770bb347
+20:07:51.647 INFO - To downstream: {"sessionId":"","status":0,"value":null}
